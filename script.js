@@ -1,37 +1,33 @@
-document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-    // 1. JANGAN hapus preventDefault di sini kalau mau pakai cara AJAX (biar nggak pindah halaman)
-    e.preventDefault();
+const rsvpForm = document.getElementById('rsvpForm');
 
-    const form = e.target;
-    const data = new FormData(form);
-    const button = form.querySelector('button');
-    const originalButtonText = button.innerText;
+if (rsvpForm) {
+    rsvpForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const btn = document.getElementById('submitBtn');
+        const formData = new FormData(this);
+        
+        btn.innerText = 'Mengirim...';
+        btn.disabled = true;
 
-    // Ubah teks tombol pas lagi loading
-    button.innerText = 'Mengirim...';
-    button.disabled = true;
+        try {
+            const response = await fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
 
-    // 2. Proses pengiriman ke Formspree lewat belakang layar (fetch)
-    fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: {
-            'Accept': 'application/json'
+            if (response.ok) {
+                alert('Yess! Konfirmasi kamu sudah masuk beb!');
+                this.reset();
+            } else {
+                alert('Yah, gagal ngirim. Cek koneksi ya!');
+            }
+        } catch (error) {
+            alert('Eror sistem, coba lagi nanti ya.');
+        } finally {
+            btn.innerText = 'Kirim Konfirmasi';
+            btn.disabled = false;
         }
-    }).then(response => {
-        if (response.ok) {
-            // Kalau berhasil
-            alert('Terima kasih! Konfirmasi kamu sudah terkirim.');
-            form.reset();
-        } else {
-            // Kalau ada masalah
-            alert('Aduh, ada masalah pas ngirim. Coba lagi ya!');
-        }
-    }).catch(error => {
-        alert('Eror jaringan, pastikan internet kamu aktif ya!');
-    }).finally(() => {
-        // Balikin tombol ke semula
-        button.innerText = originalButtonText;
-        button.disabled = false;
     });
-});
+}
