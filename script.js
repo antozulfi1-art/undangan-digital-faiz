@@ -1,37 +1,37 @@
-<section class="rsvp">
-    <h3>Konfirmasi Kehadiran</h3>
-    <form action="https://formspree.io/f/xgorjrg..." method="POST" style="display: flex; flex-direction: column; gap: 10px;">
-        <input type="text" name="Nama" placeholder="Nama Anda" required style="padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
-        <input type="email" name="Email" placeholder="Email Anda" required style="padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
-        <select name="Kehadiran" required style="padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
-            <option value="">Apakah Anda hadir?</option>
-            <option value="Hadir">Hadir</option>
-            <option value="Tidak Hadir">Tidak Hadir</option>
-        </select>
-        <button type="submit" style="background-color: #7b1fa2; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
-            Kirim Konfirmasi
-        </button>
-    </form>
-</section>
+document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+    // 1. JANGAN hapus preventDefault di sini kalau mau pakai cara AJAX (biar nggak pindah halaman)
+    e.preventDefault();
 
-// Animasi saat scroll
-const observerOptions = {
-  threshold: 0.1
-};
+    const form = e.target;
+    const data = new FormData(form);
+    const button = form.querySelector('button');
+    const originalButtonText = button.innerText;
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = 1;
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, observerOptions);
+    // Ubah teks tombol pas lagi loading
+    button.innerText = 'Mengirim...';
+    button.disabled = true;
 
-// Amati elemen dengan kelas tertentu
-document.querySelectorAll('.event-details, .rsvp, .couple').forEach(el => {
-  el.style.opacity = 0;
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(el);
+    // 2. Proses pengiriman ke Formspree lewat belakang layar (fetch)
+    fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            // Kalau berhasil
+            alert('Terima kasih! Konfirmasi kamu sudah terkirim.');
+            form.reset();
+        } else {
+            // Kalau ada masalah
+            alert('Aduh, ada masalah pas ngirim. Coba lagi ya!');
+        }
+    }).catch(error => {
+        alert('Eror jaringan, pastikan internet kamu aktif ya!');
+    }).finally(() => {
+        // Balikin tombol ke semula
+        button.innerText = originalButtonText;
+        button.disabled = false;
+    });
 });
