@@ -1,28 +1,3 @@
-// Script untuk form RSVP
-document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const attendance = document.getElementById('attendance').value;
-
-  if (attendance === '') {
-    alert('Silakan pilih apakah Anda akan hadir atau tidak.');
-    return;
-  }
-
-  // Simulasi pengiriman data
-  console.log({
-    name,
-    email,
-    attendance,
-    date: new Date().toISOString()
-  });
-
-  // Tampilkan pesan sukses
-  alert(`Terima kasih, ${name}! Konfirmasi kehadiran Anda telah diterima.`);
-  this.reset();
-});
 
 // Animasi saat scroll
 const observerOptions = {
