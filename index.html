@@ -37,21 +37,30 @@ initial-scale=1.0" />
         <p><strong>Lokasi:</strong> TETRA Coffee & Eatery </p>
     </section>
 
-    <section class="rsvp">
-        <h3>Konfirmasi Kehadiran</h3>
-        <form action="https://formspree.io/f/xgorjrgw" method="POST">
+    <section class="rsvp" style="padding: 20px; text-align: center;">
+    <h3 style="margin-bottom: 15px;">Konfirmasi Kehadiran</h3>
+    <form id="rsvpForm" action="https://formspree.io/f/xgorjrg..." method="POST" style="display: flex; flex-direction: column; gap: 15px; max-width: 300px; margin: 0 auto;">
+        
+        <input type="text" name="Nama" id="name" placeholder="Nama Anda" required 
+            style="padding: 12px; border: 1px solid #ddd; border-radius: 10px; outline: none;">
+            
+        <input type="email" name="Email" id="email" placeholder="Email Anda" required 
+            style="padding: 12px; border: 1px solid #ddd; border-radius: 10px; outline: none;">
+            
+        <select name="Kehadiran" id="attendance" required 
+            style="padding: 12px; border: 1px solid #ddd; border-radius: 10px; background: white;">
+            <option value="">Apakah Anda hadir?</option>
+            <option value="Hadir">Hadir</option>
+            <option value="Tidak Hadir">Tidak Hadir</option>
+        </select>
+        
+        <button type="submit" id="submitBtn" 
+            style="background: #7b1fa2; color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s;">
+            Kirim Konfirmasi
+        </button>
+    </form>
+</section>
 
-            <input type="text" id="name" placeholder="Nama Anda" required />
-            <input type="email" id="email" placeholder="Email"
-            required />
-            <select id="attendance" required>
-    <option value="">Apakah Anda hadir?</option>
-    <option value="hadir">Hadir</option>
-    <option value="tidak hadir">Tidak Hadir</option>
-</select>
-
-<button type="submit">Kirim</button>
-</form>
 </section>
 
 <footer>
