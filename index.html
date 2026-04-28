@@ -37,29 +37,32 @@ initial-scale=1.0" />
         <p><strong>Lokasi:</strong> TETRA Coffee & Eatery </p>
     </section>
 
-    <section class="rsvp" style="padding: 20px; text-align: center;">
-    <h3 style="margin-bottom: 15px;">Konfirmasi Kehadiran</h3>
-    <form id= action="https://formspree.io/f/xgorjrg..." method="POST" style="display: flex; flex-direction: column; gap: 15px; max-width: 300px; margin: 0 auto;">
+    <section class="rsvp" style="padding: 40px 20px; text-align: center; background-color: #f9f9f9;">
+    <h3 style="margin-bottom: 20px; color: #333; font-family: 'Poppins', sans-serif;">Konfirmasi Kehadiran</h3>
+    
+    <form action="https://formspree.io/f/xgorjrgw" method="POST" style="display: flex; flex-direction: column; gap: 15px; max-width: 350px; margin: 0 auto;">
         
-        <input type="text" name="Nama" id="name" placeholder="Nama Anda" required 
-            style="padding: 12px; border: 1px solid #ddd; border-radius: 10px; outline: none;">
+        <input type="text" name="Nama" placeholder="Nama Anda" required 
+            style="padding: 12px 15px; border: 1px solid #ddd; border-radius: 12px; font-family: inherit; outline: none; transition: 0.3s;">
             
-        <input type="email" name="Email" id="email" placeholder="Email Anda" required 
-            style="padding: 12px; border: 1px solid #ddd; border-radius: 10px; outline: none;">
+        <input type="email" name="Email" placeholder="Email Anda" required 
+            style="padding: 12px 15px; border: 1px solid #ddd; border-radius: 12px; font-family: inherit; outline: none; transition: 0.3s;">
             
-        <select name="Kehadiran" id="attendance" required 
-            style="padding: 12px; border: 1px solid #ddd; border-radius: 10px; background: white;">
+        <select name="Kehadiran" required 
+            style="padding: 12px 15px; border: 1px solid #ddd; border-radius: 12px; background: white; font-family: inherit; cursor: pointer;">
             <option value="">Apakah Anda hadir?</option>
             <option value="Hadir">Hadir</option>
             <option value="Tidak Hadir">Tidak Hadir</option>
         </select>
         
-        <button type="submit" id="submitBtn" 
-            style="background: #7b1fa2; color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s;">
+        <button type="submit" 
+            style="background-color: #7b1fa2; color: white; padding: 15px; border: none; border-radius: 12px; font-weight: 600; font-size: 16px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 6px rgba(123, 31, 162, 0.2);">
             Kirim Konfirmasi
         </button>
+        
     </form>
 </section>
+
 
 </section>
 
